@@ -1,6 +1,9 @@
-require('dotenv').config();
-const Discord = require('discord.js');
-const bot = new Discord.Client();
+import {config as dotEvvConfig} from 'dotenv';
+import {Client} from 'discord.js';
+
+dotEvvConfig();
+
+const bot = new Client();
 const TOKEN = process.env.TOKEN;
 
 bot.login(TOKEN);
