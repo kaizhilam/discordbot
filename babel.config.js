@@ -1,19 +1,16 @@
 module.exports = {
-  "presets": [
+  presets: [
     [
-      "@babel/env",
+      '@babel/env',
       {
-        "useBuiltIns": "entry",
-        "corejs": "3.0.0",
+        useBuiltIns: 'entry',
+        corejs: '3.0.0',
         targets: {
-          node: "current"
-        }
-      }
+          node: 'current',
+        },
+      },
     ],
-    "@babel/typescript"
+    '@babel/typescript',
   ],
-  "plugins": [
-    "@babel/proposal-class-properties",
-    "@babel/proposal-object-rest-spread"
-  ]
+  plugins: ['@babel/proposal-class-properties', '@babel/proposal-object-rest-spread'],
 };
