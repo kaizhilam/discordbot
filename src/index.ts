@@ -1,5 +1,6 @@
 import { config as dotEnvConfig } from 'dotenv';
 import { Client } from 'discord.js';
+import { onVoiceChannelConnect, onVoiceChannelDisconnect } from './events';
 
 dotEnvConfig();
 
@@ -20,11 +21,8 @@ bot.on('message', (msg) => {
 
 bot.on('voiceStateUpdate', (oldVoiceState, newVoiceState) => {
   if (newVoiceState.channel) {
-    console.log(`${newVoiceState.member.user.tag} joined ${newVoiceState.channel.name}`);
-    if (newVoiceState.member.user.tag === 'User here') {
-      newVoiceState.member.voice.kick();
-    }
+    onVoiceChannelConnect(newVoiceState.member);
   } else if (oldVoiceState.channel) {
-    console.log(`${oldVoiceState.member.user.tag} disconnected from ${oldVoiceState.channel.name}`);
+    onVoiceChannelDisconnect(newVoiceState.member);
   }
 });
