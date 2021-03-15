@@ -16,8 +16,12 @@ Just a simple Discord bot
 
 ### Running the tests
 
-tbc
+1. Start the test `npm run test`
+2. Coverage should be in `coverage\lcov-report\index.html`
 
+### Contributing
+
+Please read [CONTRIBUTING.md](CONTRIBUTING.md)
 ### Deployment
 
 tbc
