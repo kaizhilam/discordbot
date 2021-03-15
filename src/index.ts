@@ -1,7 +1,7 @@
-import {config as dotEvvConfig} from 'dotenv';
-import {Client} from 'discord.js';
+import { config as dotEnvConfig } from 'dotenv';
+import { Client } from 'discord.js';
 
-dotEvvConfig();
+dotEnvConfig();
 
 const bot = new Client();
 const TOKEN = process.env.TOKEN;
@@ -9,11 +9,11 @@ const TOKEN = process.env.TOKEN;
 bot.login(TOKEN);
 
 bot.on('ready', () => {
-    console.info(`Logged in as ${bot.user.tag}!`);
+  console.info(`Logged in as ${bot.user.tag}!`)
 });
 
-bot.on('message', msg => {
-    if (msg.content === 'ping') {
-        msg.channel.send('pong');
-    }
+bot.on('message', (msg) => {
+  if (msg.content === 'ping') {
+    msg.channel.send('pong');
+  }
 });

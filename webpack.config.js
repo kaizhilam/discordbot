@@ -1,5 +1,5 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 var path = require('path');
-var webpack = require('webpack');
 var nodeExternals = require('webpack-node-externals');
 
 module.exports = {
