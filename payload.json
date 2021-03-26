@@ -1,0 +1,32 @@
+[
+  {
+    "name": "when someone says ping, reply pong",
+    "event": "message",
+    "args": {
+      "message": "ping",
+      "ignoreCase": false
+    },
+    "actions": [
+      {
+        "name": "reply pong",
+        "action": "sendToChannel",
+        "args": {
+          "message": "pong"
+        }
+      }
+    ]
+  },
+  {
+    "name": "test2",
+    "event": "onVoiceChannelConnect",
+    "actions": [
+      {
+        "name": "reply",
+        "action": "sendToChannel",
+        "args": {
+          "message": "Someone joined"
+        }
+      }
+    ]
+  }
+]

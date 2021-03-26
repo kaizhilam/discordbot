@@ -1,6 +1,5 @@
 import { config as dotEnvConfig } from 'dotenv';
 import { Client } from 'discord.js';
-import { onVoiceChannelConnect, onVoiceChannelDisconnect } from './events';
 
 dotEnvConfig();
 
@@ -9,20 +8,16 @@ const TOKEN = process.env.TOKEN;
 
 bot.login(TOKEN);
 
-bot.on('ready', () => {
-  console.info(`Logged in as ${bot.user.tag}!`);
-});
+// bot.on('ready', () => {
+//   console.info(`Logged in as ${bot.user.tag}!`);
+// });
 
-bot.on('message', (msg) => {
-  if (msg.content === 'ping') {
-    msg.channel.send('pong');
-  }
-});
+import fs from 'fs';
+import { message } from './events/message/message';
+import { voiceStateUpdate } from './events';
 
-bot.on('voiceStateUpdate', (oldVoiceState, newVoiceState) => {
-  if (newVoiceState.channel) {
-    onVoiceChannelConnect(newVoiceState.member);
-  } else if (oldVoiceState.channel) {
-    onVoiceChannelDisconnect(newVoiceState.member);
-  }
-});
+const rawdata = fs.readFileSync('payload.json', 'utf8');
+const externalPayload = JSON.parse(rawdata);
+
+message({ bot, payloads: externalPayload });
+voiceStateUpdate({ bot, payloads: externalPayload });
