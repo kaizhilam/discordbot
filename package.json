@@ -6,7 +6,7 @@
   "scripts": {
     "start": "concurrently --raw --kill-others \"webpack --config webpack.config.js -w\" \"nodemon -w dist -e js dist/server.js\"",
     "build": "webpack --config webpack.config.js",
-    "clean": "rm -rf dist node_modules",
+    "clean": "rm -rf dist node_modules coverage",
     "prestart": "sh scripts/dev_fix_nodemon.sh && npm i",
     "lint": "eslint --ext .ts src",
     "lint:fix": "eslint --ext .ts --fix src",
