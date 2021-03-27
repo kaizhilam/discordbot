@@ -1,15 +1,16 @@
 import { Client } from 'discord.js';
 import { actionManager } from '../../actions';
-import { IPayload, Event as PayloadEvent } from '../../utils';
+import { IPayload, Event as PayloadEvent, IConfig } from '../../utils';
 import { Event } from '..';
 
 interface IMessage {
   bot: Client;
   payloads: IPayload[];
+  config: IConfig;
 }
 
 export function message(props: IMessage): void {
-  const { bot, payloads } = props;
+  const { bot, payloads, config } = props;
 
   const events = payloads.filter((payload) => payload.event === PayloadEvent.message);
 
@@ -19,11 +20,11 @@ export function message(props: IMessage): void {
       const { message, ignoreCase } = args;
       if (ignoreCase) {
         if (msg.content.toLowerCase() === message.toLowerCase()) {
-          actionManager({ message: msg, actions });
+          actionManager({ message: msg, actions, config });
         }
       } else {
         if (msg.content === message) {
-          actionManager({ message: msg, actions });
+          actionManager({ message: msg, actions, config });
         }
       }
     });
