@@ -6,6 +6,8 @@ Just a simple Discord bot
 
 ### Prerequisites
 1. Node
+2. Discord account
+3. schema channel on a Discord guild
 
 ### Installing
 
@@ -13,16 +15,15 @@ Just a simple Discord bot
 ```
 TOKEN=[TOKEN HERE]
 GUILD_ID=[GUILD ID HERE]
-SCHEMA_HOST=[ENDPOINT]
-PORT=[PORT]
+SCHEMA_CHANNEL_ID=[SCHEMA CHANNEL ID HERE]
 ```
 2. Install all dependencies `npm install`
 3. Build packages `npm run build`
 4. Start the bot `npm run start`
 
-### Useage
+### Usage
 
-1. Send a POST request to SCHEMA_HOST:PORT with schema for body
+1. Write a valid schema on the schema channel
 
 ### Example schema
 
@@ -50,10 +51,10 @@ PORT=[PORT]
 ### Example .env
 
 ```
-TOKEN=AAAABBBBCCCCDDDD1111222233334444
-GUILD_ID=1234567890
-SCHEMA_HOST=http://localhost
-PORT=3000
+TOKEN=aaabbbcccddd111222333444
+GUILD_ID=123456789
+SCHEMA_CHANNEL_ID=123456789
+
 ```
 
 

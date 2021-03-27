@@ -24,4 +24,5 @@ export interface IPayload {
 export interface IConfig {
   token: string;
   guildId: string;
+  schemaChannelId: string;
 }
