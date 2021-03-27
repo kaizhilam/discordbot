@@ -17,14 +17,47 @@
     ]
   },
   {
-    "name": "test2",
-    "event": "onVoiceChannelConnect",
+    "name": "asdf",
+    "event": "message",
+    "args": {
+      "message": "aaa",
+      "ignoreCase": false
+    },
     "actions": [
       {
-        "name": "reply",
+        "name": "reply bbb",
         "action": "sendToChannel",
         "args": {
-          "message": "Someone joined"
+          "message": "bbb"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Test on bot ready",
+    "event": "ready",
+    "actions": [
+      {
+        "name": "send ready message",
+        "action": "sendToChannel",
+        "args": {
+          "message": "Bot is ready"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Kick myself from Channel",
+    "event": "onVoiceChannelConnect",
+    "args": {
+      "member": "aaa#111"
+    },
+    "actions": [
+      {
+        "name": "kick myself",
+        "action": "kickFromVoiceChannel",
+        "args": {
+          "member": "aaa#111"
         }
       }
     ]
