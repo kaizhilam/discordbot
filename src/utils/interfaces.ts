@@ -1,26 +1,27 @@
 import { Event } from '.';
 
-export interface IEventArg {
+export interface IPayloadEventArg {
   ignoreCase?: boolean;
   message?: string;
   member?: string;
 }
-export interface IActionArg {
+export interface IPayloadActionArg {
   message?: string;
   member?: string;
+  channel?: string;
 }
-export interface IAction {
+export interface IPayloadAction {
   name?: string;
   action: string;
-  args: IActionArg;
+  args: IPayloadActionArg;
 }
 export interface IPayload {
   name?: string;
   event: Event;
-  args?: IEventArg;
-  actions: IAction[];
+  args?: IPayloadEventArg;
+  actions: IPayloadAction[];
 }
 export interface IConfig {
   token: string;
-  textChannelId: string;
+  guildId: string;
 }

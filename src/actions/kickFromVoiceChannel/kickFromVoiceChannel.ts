@@ -1,14 +1,25 @@
-import { GuildMember } from 'discord.js';
-import { IActionArg } from '../../utils';
+import { Collection, VoiceChannel } from 'discord.js';
+import { IAction } from '../utils';
 
-interface IKickFromVoiceChannel {
-  args: IActionArg;
-  member: GuildMember;
-}
+export function kickFromVoiceChannel(props: IAction): void {
+  const { args, guild } = props;
+  const { channel, member } = args;
+  const voiceChannel = guild.channels.cache.filter((c) => c.type === 'voice') as Collection<string, VoiceChannel>;
 
-export function kickFromVoiceChannel(props: IKickFromVoiceChannel): void {
-  const { args, member } = props;
-  if (member.user.tag === args.member) {
-    member.voice.kick();
+  if (channel) {
+    const selectedChannel = voiceChannel.find((c) => c.name === channel) as VoiceChannel;
+    selectedChannel?.members.forEach((m) => {
+      if (m.user.tag === member) {
+        m.voice.kick();
+      }
+    });
+  } else {
+    voiceChannel.forEach((c) => {
+      c.members.forEach((m) => {
+        if (m.user.tag === member) {
+          m.voice.kick();
+        }
+      });
+    });
   }
 }

@@ -1,26 +1,24 @@
-import { Client, GuildMember, Message } from 'discord.js';
-import { IAction, IConfig } from '../utils';
+import { Guild } from 'discord.js';
+import { IPayloadAction, IConfig } from '../utils';
 import { sendToChannel, kickFromVoiceChannel } from '.';
 import { Action } from './utils/constants';
 
 interface IActionManager {
-  bot?: Client;
   config: IConfig;
-  message?: Message;
-  member?: GuildMember;
-  actions: IAction[];
+  guild: Guild;
+  actions: IPayloadAction[];
 }
 
 export function actionManager(props: IActionManager): void {
-  const { bot, message, actions, member, config } = props;
+  const { guild, actions, config } = props;
   actions.forEach((ac) => {
     const { action, args } = ac;
     switch (action) {
-      case Action.sendToChannel:
-        sendToChannel({ args, bot, message, config });
-        break;
       case Action.kickFromVoiceChannel:
-        kickFromVoiceChannel({ args, member });
+        kickFromVoiceChannel({ args, guild, config });
+        break;
+      case Action.sendToChannel:
+        sendToChannel({ args, guild, config });
         break;
       default:
         console.log('Invalid Action');

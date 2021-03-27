@@ -61,5 +61,21 @@
         }
       }
     ]
+  },
+  {
+    "name": "send message on disconnect",
+    "event": "onVoiceChannelDisconnect",
+    "args": {
+      "member": "aaa#111"
+    },
+    "actions": [
+      {
+        "name": "send ready message",
+        "action": "sendToChannel",
+        "args": {
+          "message": "I disconnected"
+        }
+      }
+    ]
   }
 ]

@@ -1,5 +1,5 @@
 export enum Event {
-  onVoiceChannelConnect = 'onVoiceChannelConnect',
-  onVoiceChannelDisconnect = 'onVoiceChannelDisconnect',
   message = 'message',
+  voiceStateUpdate = 'voiceStateUpdate',
+  ready = 'ready',
 }
