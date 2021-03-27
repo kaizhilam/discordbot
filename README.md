@@ -9,7 +9,11 @@ Just a simple Discord bot
 
 ### Installing
 
-1. Create a `.env` file on the root directory and place your token value `TOKEN=[TOKEN HERE]`
+1. Create a `.env` file on the root directory and place your token value
+```
+TOKEN=[TOKEN HERE]
+GUILD_ID=[GUILD ID HERE]
+```
 2. Install all dependencies `npm install`
 3. Build packages `npm run build`
 4. Start the bot `npm run start`

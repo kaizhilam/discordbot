@@ -1,16 +1,17 @@
-import { Client } from 'discord.js';
+import { Client, Guild } from 'discord.js';
 import { IPayload, Event as PayloadEvent, IConfig } from '../../utils';
 import { Event } from '..';
 import { actionManager } from '../../actions';
 
 interface IVoiceStateUpdate {
   bot: Client;
+  guild: Guild;
   payloads: IPayload[];
   config: IConfig;
 }
 
 export function voiceStateUpdate(props: IVoiceStateUpdate): void {
-  const { bot, payloads, config } = props;
+  const { bot, payloads, config, guild } = props;
 
   const onVoiceChannelConnect = payloads.filter((payload) => payload.event === PayloadEvent.onVoiceChannelConnect);
   const onVoiceChannelDisconnect = payloads.filter(
@@ -23,12 +24,17 @@ export function voiceStateUpdate(props: IVoiceStateUpdate): void {
         const { args, actions } = event;
         const { member } = args;
         if (member === newVoiceState.member.user.tag) {
-          actionManager({ member: newVoiceState.member, actions, config });
+          actionManager({ actions, config, guild });
         }
       });
-      // console.log(newVoiceState.member.displayName);
     } else if (oldVoiceState.channel) {
-      // console.log(newVoiceState.member.displayName);
+      onVoiceChannelDisconnect.forEach((event) => {
+        const { args, actions } = event;
+        const { member } = args;
+        if (member === oldVoiceState.member.user.tag) {
+          actionManager({ actions, config, guild });
+        }
+      });
     }
   });
 }

@@ -1,4 +1,4 @@
-import { sendToChannel } from '..';
+import { sendToChannel, kickFromVoiceChannel } from '..';
 import { actionManager } from '../actionManager';
 
 jest.mock('..');
@@ -34,5 +34,18 @@ describe('actionManager', () => {
     // @ts-ignore
     actionManager(props);
     expect(sendToChannel).toHaveBeenCalledTimes(1);
+  });
+
+  it('SHOULD call kickFromVoiceChannel when event is kickFromVoiceChannel', () => {
+    const props = {
+      actions: [
+        {
+          action: 'kickFromVoiceChannel',
+        },
+      ],
+    };
+    // @ts-ignore
+    actionManager(props);
+    expect(kickFromVoiceChannel).toHaveBeenCalledTimes(1);
   });
 });

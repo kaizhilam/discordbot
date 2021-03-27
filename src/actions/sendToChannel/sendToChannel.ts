@@ -1,19 +1,25 @@
-import { Client, Message, TextChannel } from 'discord.js';
-import { IActionArg, IConfig } from '../../utils';
+import { TextChannel } from 'discord.js';
+import { IAction } from '../utils';
 
-interface ISendToChannel {
-  bot?: Client;
-  message?: Message;
-  args: IActionArg;
-  config: IConfig;
-}
+const DEFAULTCHANNEL = 'general';
 
-export function sendToChannel(props: ISendToChannel): void {
-  const { bot, message, args, config } = props;
-  if (message) {
-    message.channel.send(args.message);
-  } else if (bot) {
-    const channel = bot.channels.cache.get(config.textChannelId) as TextChannel;
-    channel.send(args.message);
+export function sendToChannel(props: IAction): void {
+  const { guild, args } = props;
+  const { message, channel } = args;
+  const textChannel = guild.channels.cache.filter((c) => {
+    return c.type === 'text';
+  });
+
+  let selectedChannel: TextChannel;
+  if (channel) {
+    selectedChannel = textChannel.find((c) => {
+      return c.name === channel;
+    }) as TextChannel;
+  } else {
+    selectedChannel = textChannel.find((c) => {
+      return c.name === DEFAULTCHANNEL;
+    }) as TextChannel;
   }
+
+  selectedChannel?.send(message);
 }
