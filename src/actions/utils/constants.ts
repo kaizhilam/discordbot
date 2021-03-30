@@ -1,4 +1,5 @@
 export enum Action {
-  sendToChannel = 'sendToChannel',
   kickFromVoiceChannel = 'kickFromVoiceChannel',
+  movePersonFromVoiceChannelToAnother = 'movePersonFromVoiceChannelToAnother',
+  sendToChannel = 'sendToChannel',
 }

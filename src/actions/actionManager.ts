@@ -1,7 +1,7 @@
 import { Guild } from 'discord.js';
 import { IPayloadAction, IConfig } from '../utils';
-import { sendToChannel, kickFromVoiceChannel } from '.';
-import { Action } from './utils/constants';
+import { kickFromVoiceChannel, movePersonFromVoiceChannelToAnother, sendToChannel } from '.';
+import { Action } from './utils';
 
 interface IActionManager {
   config: IConfig;
@@ -16,6 +16,9 @@ export function actionManager(props: IActionManager): void {
     switch (action) {
       case Action.kickFromVoiceChannel:
         kickFromVoiceChannel({ args, guild, config });
+        break;
+      case Action.movePersonFromVoiceChannelToAnother:
+        movePersonFromVoiceChannelToAnother({ args, guild, config });
         break;
       case Action.sendToChannel:
         sendToChannel({ args, guild, config });
