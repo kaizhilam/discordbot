@@ -4,11 +4,13 @@ export interface IPayloadEventArg {
   ignoreCase?: boolean;
   message?: string;
   member?: string;
+  channel?: string;
 }
 export interface IPayloadActionArg {
+  channel?: string;
   message?: string;
   member?: string;
-  channel?: string;
+  random?: boolean;
 }
 export interface IPayloadAction {
   name?: string;

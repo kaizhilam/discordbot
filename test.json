@@ -1,0 +1,32 @@
+[
+  {
+    "name": "begone thot",
+    "event": "voiceConnect",
+    "args": {
+      "member": "scoreleyx#9511"
+    },
+    "actions": [
+      {
+        "name": "move myself",
+        "action": "movePersonFromVoiceChannelToAnother",
+        "args": {
+          "member": "Terrah#1405",
+          "random": true
+        }
+      }
+    ]
+  },
+  {
+    "name": "onReady",
+    "event": "ready",
+    "actions": [
+      {
+        "name": "move myself",
+        "action": "movePersonFromVoiceChannelToAnother",
+        "args": {
+          "member": "scoreleyx#9511"
+        }
+      }
+    ]
+  }
+]
