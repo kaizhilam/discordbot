@@ -3,7 +3,7 @@ import { IActionProps } from '..';
 
 const DEFAULTCHANNEL = 'general';
 
-export function sendToChannel(props: IActionProps): void {
+export function sendMessageToChannel(props: IActionProps): void {
   const { guild, args } = props;
   const { message, channel } = args;
   const textChannel = guild.channels.cache.filter((c) => {

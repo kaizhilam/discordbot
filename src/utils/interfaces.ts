@@ -12,6 +12,7 @@ export interface IActionArg {
   message?: string;
   member?: string;
   random?: boolean;
+  url?: string;
 }
 export interface IAction {
   name?: string;

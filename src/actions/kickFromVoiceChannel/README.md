@@ -1,4 +1,4 @@
-# Kick from voice channel
+# kickFromVoiceChannel
 
 Bot kicking user from voice channel
 

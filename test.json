@@ -1,17 +1,34 @@
 [
   {
-    "name": "begone thot",
+    "name": "start john cena theme on voice connect",
+    "event": "voiceConnect",
+    "args": {
+      "member": "scoreleyx#9511"
+    },
+    "actions": [
+      {
+        "name": "play john cena theme",
+        "action": "playAudioFromYouTube",
+        "args": {
+          "channel": "pepega",
+          "url": "https://www.youtube.com/watch?v=-LGHwFanLX4"
+        }
+      }
+    ]
+  },
+  {
+    "name": "start jojo theme on voice connect",
     "event": "voiceConnect",
     "args": {
       "member": "Jojo#4020"
     },
     "actions": [
       {
-        "name": "move myself",
-        "action": "movePersonFromVoiceChannelToAnother",
+        "name": "play jojo theme",
+        "action": "playAudioFromYouTube",
         "args": {
-          "member": "scoreleyx#9511",
-          "random": true
+          "channel": "pepega",
+          "url": "https://www.youtube.com/watch?v=Wg9C6oj-KDo"
         }
       }
     ]

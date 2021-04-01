@@ -1,4 +1,4 @@
-# Move person from a voice channel to another voice channel
+# movePersonFromVoiceChannelToAnother
 
 Bot moving the person from one voice channel to another
 
