@@ -1,7 +1,7 @@
 import { config as dotEnvConfig } from 'dotenv';
 import { Client, Message } from 'discord.js';
-import { voiceStateUpdate, message, ready } from './events';
-import { IConfig, Environment } from './utils';
+import { message, ready, voiceStateUpdate } from './events';
+import { Environment, IConfig } from './utils';
 import { readFileSync } from 'fs';
 
 dotEnvConfig();
@@ -42,11 +42,6 @@ const startUp = (msg: Message) => {
         voiceStateUpdate({ bot, payloads, config, guild });
         console.log('Bot instantiated');
       });
-      // const guild = bot.guilds.cache.get(GUILD_ID);
-      // ready({ bot, payloads, config, guild });
-      // message({ bot, payloads, config, guild });
-      // voiceStateUpdate({ bot, payloads, config, guild });
-      // console.log('Bot instantiated');
     }
   }
 };

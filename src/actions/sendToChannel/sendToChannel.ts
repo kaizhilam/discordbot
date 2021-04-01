@@ -1,9 +1,9 @@
 import { TextChannel } from 'discord.js';
-import { IAction } from '../utils';
+import { IActionProps } from '..';
 
 const DEFAULTCHANNEL = 'general';
 
-export function sendToChannel(props: IAction): void {
+export function sendToChannel(props: IActionProps): void {
   const { guild, args } = props;
   const { message, channel } = args;
   const textChannel = guild.channels.cache.filter((c) => {

@@ -1,8 +1,8 @@
-import { IPayloadActionArg, IConfig } from '../../utils';
+import { IActionArg, IConfig } from '../../utils';
 import { Guild } from 'discord.js';
 
-export interface IAction {
-  args: IPayloadActionArg;
+export interface IActionProps {
+  args: IActionArg;
   guild: Guild;
-  config: IConfig;
+  config?: IConfig;
 }

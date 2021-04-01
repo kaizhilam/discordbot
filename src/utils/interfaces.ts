@@ -1,27 +1,28 @@
 import { Event } from '.';
+import { Action } from '../actions';
 
-export interface IPayloadEventArg {
+export interface IEventArg {
   ignoreCase?: boolean;
   message?: string;
   member?: string;
   channel?: string;
 }
-export interface IPayloadActionArg {
+export interface IActionArg {
   channel?: string;
   message?: string;
   member?: string;
   random?: boolean;
 }
-export interface IPayloadAction {
+export interface IAction {
   name?: string;
-  action: string;
-  args: IPayloadActionArg;
+  action: Action;
+  args: IActionArg;
 }
 export interface IPayload {
   name?: string;
   event: Event;
-  args?: IPayloadEventArg;
-  actions: IPayloadAction[];
+  args?: IEventArg;
+  actions: IAction[];
 }
 export interface IConfig {
   token: string;
