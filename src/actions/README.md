@@ -1,6 +1,6 @@
 # Actions
 
-Action is what the bot is able to do on the guild. ActionManager handles all the actions from the payload and calls the appropriate action
+Action is what the bot is able to do on the guild
 
 ## Constructing README.md
 
