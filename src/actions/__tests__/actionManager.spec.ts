@@ -1,4 +1,9 @@
-import { kickFromVoiceChannel, movePersonFromVoiceChannelToAnother, sendToChannel } from '..';
+import {
+  kickFromVoiceChannel,
+  movePersonFromVoiceChannelToAnother,
+  playAudioFromYouTube,
+  sendMessageToChannel,
+} from '..';
 import { actionManager } from '../actionManager';
 
 jest.mock('..');
@@ -49,16 +54,29 @@ describe('actionManager', () => {
     expect(movePersonFromVoiceChannelToAnother).toHaveBeenCalledTimes(1);
   });
 
-  it('SHOULD call sendToChannel when event is sendToChannel', () => {
+  it('SHOULD call playAudioFromYouTube when event is playAudioFromYouTube', () => {
     const props = {
       actions: [
         {
-          action: 'sendToChannel',
+          action: 'playAudioFromYouTube',
         },
       ],
     };
     // @ts-ignore
     actionManager(props);
-    expect(sendToChannel).toHaveBeenCalledTimes(1);
+    expect(playAudioFromYouTube).toHaveBeenCalledTimes(1);
+  });
+
+  it('SHOULD call sendMessageToChannel when event is sendMessageToChannel', () => {
+    const props = {
+      actions: [
+        {
+          action: 'sendMessageToChannel',
+        },
+      ],
+    };
+    // @ts-ignore
+    actionManager(props);
+    expect(sendMessageToChannel).toHaveBeenCalledTimes(1);
   });
 });

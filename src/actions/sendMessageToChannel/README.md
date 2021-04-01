@@ -1,12 +1,12 @@
-# Send to channel
+# sendMessageToChannel
 
 Bot sending message to a text channel
 
 ## Schema
 ```
 {
-  "name": "send to channel example",
-  "action": "sendToChannel",
+  "name": "send message to channel example",
+  "action": "sendMessageToChannel",
   "args": {
     "message": "message",
     "channel": "general"
@@ -14,7 +14,7 @@ Bot sending message to a text channel
 }
 ```
 
-`action`: sendToChannel
+`action`: sendMessageToChannel
 
 `message`: the message that the bot should send
 

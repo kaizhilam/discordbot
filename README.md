@@ -38,7 +38,7 @@ SCHEMA_CHANNEL_ID=[SCHEMA CHANNEL ID HERE]
         "actions": [
             {
                 "name": "reply world",
-                "action": "sendToChannel",
+                "action": "sendMessageToChannel",
                 "args": {
                     "message": "World"
                 }

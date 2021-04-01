@@ -1,6 +1,6 @@
-import { sendToChannel } from '..';
+import { sendMessageToChannel } from '..';
 
-describe('sendToChannel', () => {
+describe('sendMessageToChannel', () => {
   it('SHOULD send to general text channel', () => {
     const mockSend = jest.fn();
     const guild = {
@@ -22,7 +22,7 @@ describe('sendToChannel', () => {
       args,
     };
     // @ts-ignore
-    sendToChannel(props);
+    sendMessageToChannel(props);
     expect(mockSend).toHaveBeenCalledWith(props.args.message);
   });
 
@@ -53,7 +53,7 @@ describe('sendToChannel', () => {
       args,
     };
     // @ts-ignore
-    sendToChannel(props);
+    sendMessageToChannel(props);
     expect(mockSend).toHaveBeenCalledTimes(1);
     expect(mockSend).toHaveBeenCalledWith(props.args.message);
   });

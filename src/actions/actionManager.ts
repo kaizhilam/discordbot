@@ -1,6 +1,11 @@
 import { Guild } from 'discord.js';
 import { IConfig, IAction } from '../utils';
-import { kickFromVoiceChannel, movePersonFromVoiceChannelToAnother, sendToChannel } from '.';
+import {
+  kickFromVoiceChannel,
+  movePersonFromVoiceChannelToAnother,
+  playAudioFromYouTube,
+  sendMessageToChannel,
+} from '.';
 import { Action } from './utils';
 
 interface IActionManager {
@@ -20,8 +25,11 @@ export function actionManager(props: IActionManager): void {
       case Action.movePersonFromVoiceChannelToAnother:
         movePersonFromVoiceChannelToAnother({ args, guild, config });
         break;
-      case Action.sendToChannel:
-        sendToChannel({ args, guild, config });
+      case Action.playAudioFromYouTube:
+        playAudioFromYouTube({ args, guild, config });
+        break;
+      case Action.sendMessageToChannel:
+        sendMessageToChannel({ args, guild, config });
         break;
       default:
         console.log('Invalid Action');

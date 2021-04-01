@@ -16,9 +16,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@discordjs/opus": "^0.5.0",
+    "discord-ytdl-core": "^5.0.2",
     "discord.js": "^12.5.2",
     "dotenv": "^8.2.0",
-    "lodash": "^4.17.21"
+    "ffmpeg-static": "^4.3.0",
+    "lodash": "^4.17.21",
+    "ytdl-core": "^4.5.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.13.14",
