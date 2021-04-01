@@ -3,10 +3,10 @@ import {
   movePersonFromVoiceChannelToAnother,
   playAudioFromYouTube,
   sendMessageToChannel,
-} from '..';
-import { actionManager } from '../actionManager';
+} from '../..';
+import { actionManager } from '..';
 
-jest.mock('..');
+jest.mock('../..');
 
 describe('actionManager', () => {
   beforeEach(() => {

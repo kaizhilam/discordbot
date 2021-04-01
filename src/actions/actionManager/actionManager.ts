@@ -1,12 +1,12 @@
 import { Guild } from 'discord.js';
-import { IConfig, IAction } from '../utils';
+import { IConfig, IAction } from '../../utils';
 import {
   kickFromVoiceChannel,
   movePersonFromVoiceChannelToAnother,
   playAudioFromYouTube,
   sendMessageToChannel,
-} from '.';
-import { Action } from './utils';
+  Action,
+} from '..';
 
 interface IActionManager {
   config: IConfig;
