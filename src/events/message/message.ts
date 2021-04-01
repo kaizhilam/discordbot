@@ -1,21 +1,14 @@
-import { Client, Guild } from 'discord.js';
 import { actionManager } from '../../actions';
-import { IPayload, Event as PayloadEvent, IConfig } from '../../utils';
-import { Event } from '..';
+import { Event } from '../../utils';
+import { IEventProps } from '..';
+import { ClientEvent } from '..';
 
-interface IMessage {
-  bot: Client;
-  payloads: IPayload[];
-  config: IConfig;
-  guild: Guild;
-}
-
-export function message(props: IMessage): void {
+export function message(props: IEventProps): void {
   const { bot, payloads, config, guild } = props;
 
-  const events = payloads.filter((payload) => payload.event === PayloadEvent.message);
+  const events = payloads.filter((payload) => payload.event === Event.message);
 
-  bot.on(Event.message, (msg) => {
+  bot.on(ClientEvent.message, (msg) => {
     events.forEach((event) => {
       const { args, actions } = event;
       const { message, ignoreCase } = args;

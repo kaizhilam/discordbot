@@ -1,23 +1,9 @@
-import { Event } from '..';
+import { Client, Guild } from 'discord.js';
+import { IConfig, IPayload } from '../../utils';
 
-export interface IEventArg {
-  ignoreCase?: boolean;
-  message?: string;
-}
-
-export interface IActionArg {
-  message?: string;
-}
-
-export interface IAction {
-  name: string;
-  action: string;
-  args: IActionArg;
-}
-
-export interface IPayload {
-  name: string;
-  event: Event;
-  args?: IEventArg;
-  actions: IAction[];
+export interface IEventProps {
+  bot: Client;
+  payloads: IPayload[];
+  config: IConfig;
+  guild: Guild;
 }

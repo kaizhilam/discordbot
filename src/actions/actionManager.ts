@@ -1,12 +1,12 @@
 import { Guild } from 'discord.js';
-import { IPayloadAction, IConfig } from '../utils';
+import { IConfig, IAction } from '../utils';
 import { kickFromVoiceChannel, movePersonFromVoiceChannelToAnother, sendToChannel } from '.';
 import { Action } from './utils';
 
 interface IActionManager {
   config: IConfig;
   guild: Guild;
-  actions: IPayloadAction[];
+  actions: IAction[];
 }
 
 export function actionManager(props: IActionManager): void {

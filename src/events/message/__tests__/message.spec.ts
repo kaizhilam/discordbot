@@ -1,4 +1,4 @@
-import { message } from '../message';
+import { message } from '..';
 import { actionManager } from '../../../actions';
 
 jest.mock('../../../actions');

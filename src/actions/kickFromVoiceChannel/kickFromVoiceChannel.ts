@@ -1,7 +1,7 @@
 import { Collection, VoiceChannel } from 'discord.js';
-import { IAction } from '../utils';
+import { IActionProps } from '../utils';
 
-export function kickFromVoiceChannel(props: IAction): void {
+export function kickFromVoiceChannel(props: IActionProps): void {
   const { args, guild } = props;
   const { channel, member } = args;
   const voiceChannel = guild.channels.cache.filter((c) => c.type === 'voice') as Collection<string, VoiceChannel>;

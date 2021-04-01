@@ -3,14 +3,14 @@
     "name": "begone thot",
     "event": "voiceConnect",
     "args": {
-      "member": "scoreleyx#9511"
+      "member": "Jojo#4020"
     },
     "actions": [
       {
         "name": "move myself",
         "action": "movePersonFromVoiceChannelToAnother",
         "args": {
-          "member": "Terrah#1405",
+          "member": "scoreleyx#9511",
           "random": true
         }
       }
