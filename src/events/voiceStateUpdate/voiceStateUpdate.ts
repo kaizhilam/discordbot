@@ -1,5 +1,6 @@
 import { difference } from '../../utils';
-import { ClientEvent, IEventProps, voiceConnect, voiceDisconnect } from '..';
+import { ClientEvent, IEventProps, voiceConnect, voiceDisconnect, mute } from '..';
+import { VoiceState } from 'discord.js';
 
 export function voiceStateUpdate(props: IEventProps): void {
   const { bot, payloads, config, guild } = props;
@@ -9,25 +10,18 @@ export function voiceStateUpdate(props: IEventProps): void {
       voiceConnect({ voiceState: newVoiceState, payloads, config, guild });
     } else if (oldVoiceState.channel && !newVoiceState.channel) {
       voiceDisconnect({ voiceState: newVoiceState, payloads, config, guild });
-    } /* else {
+    } else {
       const voiceStateEvent = difference(newVoiceState, oldVoiceState) as VoiceState;
-      const member = newVoiceState.member;
-      let eventsTriggered = Object.keys(voiceStateEvent);
-
-      // Filter deafen
-      if (eventsTriggered.includes('selfDeaf')) {
-        eventsTriggered = eventsTriggered.filter((e) => e !== 'selfMute');
-      }
-
-      const event = eventsTriggered[0];
-      switch (event) {
+      const eventsTriggered = Object.keys(voiceStateEvent)[0];
+      switch (eventsTriggered) {
         case 'selfMute':
+          if (voiceStateEvent[eventsTriggered]) {
+            mute({ voiceState: newVoiceState, payloads, config, guild });
+          }
           break;
         default:
           break;
       }
-      console.log(`${member.user.tag} triggered ${event} to ${voiceStateEvent[event]}.`);
     }
-    */
   });
 }

@@ -1,7 +1,9 @@
 import { voiceStateUpdate } from '..';
-import { voiceConnect, voiceDisconnect } from '../..';
+import { voiceConnect, voiceDisconnect, mute } from '../..';
+import { difference } from '../../../utils';
 
 jest.mock('../..');
+jest.mock('../../../utils');
 
 describe('voiceStateUpdate', () => {
   const mockOn = jest.fn();
@@ -52,7 +54,35 @@ describe('voiceStateUpdate', () => {
     expect(voiceDisconnect).toHaveBeenCalledTimes(1);
   });
 
+  it('SHOULD run mute when event selfMute true', () => {
+    difference.mockReturnValue({
+      selfMute: true,
+    });
+    const oldVoiceState = {};
+    const newVoiceState = {};
+    const payloads = [];
+    voiceStateUpdate({ bot, payloads });
+    const mockOnSecondArg = mockOn.mock.calls[0][1];
+    mockOnSecondArg(oldVoiceState, newVoiceState);
+    expect(mute).toHaveBeenCalledTimes(1);
+  });
+
+  it('SHOULD run unmute when event selfMute is false', () => {
+    // Change this when unmite functionality is up
+    difference.mockReturnValue({
+      selfMute: false,
+    });
+    const oldVoiceState = {};
+    const newVoiceState = {};
+    const payloads = [];
+    voiceStateUpdate({ bot, payloads });
+    const mockOnSecondArg = mockOn.mock.calls[0][1];
+    mockOnSecondArg(oldVoiceState, newVoiceState);
+    expect(mute).toHaveBeenCalledTimes(0);
+  });
+
   it('SHOULD run nothing when nothing exist', () => {
+    difference.mockReturnValue({});
     const oldVoiceState = {
       channel: '',
     };

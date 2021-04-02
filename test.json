@@ -1,24 +1,5 @@
 [
   {
-    "name": "start john cena theme on voice connect",
-    "event": "voiceConnect",
-    "args": {
-      "member": "scoreleyx#9511"
-    },
-    "actions": [
-      {
-        "name": "play john cena theme",
-        "action": "playAudioFromYouTube",
-        "args": {
-          "channel": "pepega",
-          "start": 225,
-          "stop": 252,
-          "url": "https://www.youtube.com/watch?v=2MtOpB5LlUA"
-        }
-      }
-    ]
-  },
-  {
     "name": "start jojo theme on voice connect",
     "event": "voiceConnect",
     "args": {
@@ -30,20 +11,28 @@
         "action": "playAudioFromYouTube",
         "args": {
           "channel": "pepega",
+          "start": 225,
+          "stop": 252,
           "url": "https://www.youtube.com/watch?v=2MtOpB5LlUA"
         }
       }
     ]
   },
   {
-    "name": "onReady",
-    "event": "ready",
+    "name": "Mute test",
+    "event": "mute",
+    "args": {
+      "member": "scoreleyx#9511"
+    },
     "actions": [
       {
-        "name": "move myself",
-        "action": "movePersonFromVoiceChannelToAnother",
+        "name": "play jojo theme",
+        "action": "playAudioFromYouTube",
         "args": {
-          "member": "scoreleyx#9511"
+          "channel": "pepega",
+          "start": 225,
+          "stop": 252,
+          "url": "https://www.youtube.com/watch?v=2MtOpB5LlUA"
         }
       }
     ]

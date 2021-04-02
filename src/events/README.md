@@ -29,7 +29,7 @@ Use the format below
 
 `arg1`: [arg1 description]
 
-`arg2`: [arg2 description] (Optional) (Default: 'default')
+`arg2`: [arg2 description] (Optional)
 
 ...
 

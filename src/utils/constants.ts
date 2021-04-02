@@ -2,7 +2,7 @@ export enum Event {
   voiceConnect = 'voiceConnect',
   voiceDisconnect = 'voiceDisconnect',
   message = 'message',
-  ready = 'ready',
+  mute = 'mute',
 }
 
 export enum Environment {

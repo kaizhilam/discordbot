@@ -1,6 +1,6 @@
 import { config as dotEnvConfig } from 'dotenv';
 import { Client, Message } from 'discord.js';
-import { message, ready, voiceStateUpdate } from './events';
+import { message, voiceStateUpdate } from './events';
 import { Environment, IConfig } from './utils';
 import { readFileSync } from 'fs';
 
@@ -19,33 +19,78 @@ const config = {
 const bot = new Client();
 bot.login(TOKEN);
 
-const startUp = (msg: Message) => {
-  if (msg.channel.id === config.schemaChannelId && msg.author.id !== bot.user.id) {
-    let payloads;
-    try {
-      if (ENVIRONMENT === Environment.DEVELOPMENT) {
-        const test = readFileSync('test.json', 'utf-8');
-        payloads = JSON.parse(test);
-      } else {
-        payloads = JSON.parse(msg.content);
-      }
-      msg.reply('Done');
-    } catch (e) {
-      msg.reply('Not valid JSON');
-    }
+if (ENVIRONMENT === Environment.DEVELOPMENT) {
+  bot.on('ready', () => {
+    const test = readFileSync('test.json', 'utf-8');
+    const payloads = JSON.parse(test);
     if (payloads) {
       bot.removeAllListeners();
-      bot.on('message', startUp);
       bot.guilds.fetch(GUILD_ID).then((guild) => {
-        ready({ bot, payloads, config, guild });
         message({ bot, payloads, config, guild });
         voiceStateUpdate({ bot, payloads, config, guild });
         console.log('Bot instantiated');
       });
     }
-  }
-};
-bot.on('ready', () => {
-  console.log('Bot is ready, type anything in schema chat to instantiate the bot');
+  });
+} else if (ENVIRONMENT === Environment.PRODUCTION) {
+  const startUp = (msg: Message) => {
+    if (msg.channel.id === config.schemaChannelId && msg.author.id !== bot.user.id) {
+      let payloads;
+      try {
+        payloads = JSON.parse(msg.content);
+        msg.reply('Done');
+      } catch (e) {
+        msg.reply('Not valid JSON');
+      }
+      if (payloads) {
+        bot.removeAllListeners();
+        bot.on('message', startUp);
+        bot.guilds.fetch(GUILD_ID).then((guild) => {
+          message({ bot, payloads, config, guild });
+          voiceStateUpdate({ bot, payloads, config, guild });
+          console.log('Bot instantiated');
+        });
+      }
+    }
+  };
+  bot.on('ready', () => {
+    console.log('Bot is ready, type anything in schema chat to instantiate the bot');
+  });
+  bot.on('message', startUp);
+}
+
+process.on('SIGINT', () => {
+  bot.removeAllListeners();
+  bot.destroy();
+  process.exit();
 });
-bot.on('message', startUp);
+
+// const startUp = (msg: Message) => {
+//   if (msg.channel.id === config.schemaChannelId && msg.author.id !== bot.user.id) {
+//     let payloads;
+//     try {
+//       if (ENVIRONMENT === Environment.DEVELOPMENT) {
+//         const test = readFileSync('test.json', 'utf-8');
+//         payloads = JSON.parse(test);
+//       } else {
+//         payloads = JSON.parse(msg.content);
+//       }
+//       msg.reply('Done');
+//     } catch (e) {
+//       msg.reply('Not valid JSON');
+//     }
+//     if (payloads) {
+//       bot.removeAllListeners();
+//       bot.on('message', startUp);
+//       bot.guilds.fetch(GUILD_ID).then((guild) => {
+//         message({ bot, payloads, config, guild });
+//         voiceStateUpdate({ bot, payloads, config, guild });
+//         console.log('Bot instantiated');
+//       });
+//     }
+//   }
+// };
+// bot.on('ready', () => {
+//   console.log('Bot is ready, type anything in schema chat to instantiate the bot');
+// });
+// bot.on('message', startUp);
