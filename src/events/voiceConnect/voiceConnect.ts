@@ -18,7 +18,7 @@ export function voiceConnect(props: IVoiceConnect): void {
     const { args, actions } = event;
     const { member } = args;
     if (member === voiceState.member.user.tag) {
-      actionManager({ actions, config, guild });
+      actionManager({ actions, config, guild, event });
     }
   });
 }

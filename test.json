@@ -19,20 +19,17 @@
     ]
   },
   {
-    "name": "Mute test",
-    "event": "mute",
+    "name": "Plays loser music when Liam joins",
+    "event": "voiceConnect",
     "args": {
       "member": "scoreleyx#9511"
     },
     "actions": [
       {
-        "name": "play jojo theme",
+        "name": "play loser theme",
         "action": "playAudioFromYouTube",
         "args": {
-          "channel": "pepega",
-          "start": 225,
-          "stop": 252,
-          "url": "https://www.youtube.com/watch?v=2MtOpB5LlUA"
+          "url": "https://www.youtube.com/watch?v=yHw_aasOef0"
         }
       }
     ]
