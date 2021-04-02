@@ -11,7 +11,9 @@
         "action": "playAudioFromYouTube",
         "args": {
           "channel": "pepega",
-          "url": "https://www.youtube.com/watch?v=-LGHwFanLX4"
+          "start": 225,
+          "stop": 252,
+          "url": "https://www.youtube.com/watch?v=2MtOpB5LlUA"
         }
       }
     ]
@@ -28,7 +30,7 @@
         "action": "playAudioFromYouTube",
         "args": {
           "channel": "pepega",
-          "url": "https://www.youtube.com/watch?v=Wg9C6oj-KDo"
+          "url": "https://www.youtube.com/watch?v=2MtOpB5LlUA"
         }
       }
     ]
