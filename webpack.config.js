@@ -5,7 +5,7 @@ var nodeExternals = require('webpack-node-externals');
 module.exports = {
   entry: ['babel-polyfill', './src/index'],
   mode: 'development',
-  devtool: false,
+  devtool: 'source-map',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'server.js',

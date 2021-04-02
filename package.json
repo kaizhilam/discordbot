@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently --raw --kill-others \"webpack --config webpack.config.js -w\" \"nodemon -w dist -e js dist/server.js\"",
+    "start": "concurrently --raw --kill-others \"webpack --config webpack.config.js -w\" \"nodemon --inspect=0.0.0.0:9229 -w dist -e js dist/server.js\"",
     "build": "webpack --config webpack.config.js",
     "clean": "rm -rf dist node_modules coverage",
     "prestart": "sh scripts/dev_fix_nodemon.sh && npm i",
