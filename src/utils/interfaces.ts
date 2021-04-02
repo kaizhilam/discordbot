@@ -12,6 +12,8 @@ export interface IActionArg {
   message?: string;
   member?: string;
   random?: boolean;
+  start?: number;
+  stop?: number;
   url?: string;
 }
 export interface IAction {

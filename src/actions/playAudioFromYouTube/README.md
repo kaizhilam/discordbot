@@ -18,4 +18,8 @@ Bot joining a channel and playing the audio from YouTube
 
 `channel`: The name of the channel
 
+`start`: Start time of the audio in seconds (Optional)
+
+`stop`: Stop time of the audio in seconds. Will have some delay issue (Optional)
+
 `url`: The URL for the YouTube video
