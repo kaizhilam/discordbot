@@ -9,6 +9,7 @@ describe('playAudioFromYouTube', () => {
     jest.resetAllMocks();
     jest.restoreAllMocks();
   });
+
   it('SHOULD play audio', () => {
     const mockOn = jest.fn();
     const mockPlay = jest.fn();
@@ -36,6 +37,11 @@ describe('playAudioFromYouTube', () => {
       args: {
         channel: 'channel',
         url: 'url',
+      },
+      event: {
+        args: {
+          member: 'aaa',
+        },
       },
     };
     playAudioFromYouTube(props);
@@ -70,6 +76,11 @@ describe('playAudioFromYouTube', () => {
         channel: 'channel',
         start: 10,
         url: 'url',
+      },
+      event: {
+        args: {
+          member: 'aaa',
+        },
       },
     };
     // @ts-ignore
@@ -106,6 +117,11 @@ describe('playAudioFromYouTube', () => {
         url: 'url',
         stop: 5,
       },
+      event: {
+        args: {
+          member: 'aaa',
+        },
+      },
     };
     jest.useFakeTimers();
     await playAudioFromYouTube(props);
@@ -114,6 +130,51 @@ describe('playAudioFromYouTube', () => {
     mockLeave.mockReset();
     setTimeout.mock.calls[0][0]();
     expect(mockLeave).toHaveBeenCalledTimes(1);
+  });
+
+  it('SHOULD join the channel the user if in and play the audio', () => {
+    const mockOn = jest.fn();
+    const mockPlay = jest.fn();
+    const mockJoin = jest.fn();
+    mockOn.mockImplementation((arg1, arg2) => arg2());
+    mockJoin.mockResolvedValue({
+      play: mockPlay,
+    });
+    mockPlay.mockReturnValue({
+      on: mockOn,
+    });
+    const mockLeave = jest.fn();
+    const props = {
+      guild: {
+        channels: {
+          cache: [
+            {
+              name: 'channel',
+              join: mockJoin,
+              leave: mockLeave,
+              type: 'voice',
+              members: [
+                {
+                  user: {
+                    tag: 'testMember',
+                  },
+                },
+              ],
+            },
+          ],
+        },
+      },
+      args: {
+        url: 'url',
+      },
+      event: {
+        args: {
+          member: 'testMember',
+        },
+      },
+    };
+    playAudioFromYouTube(props);
+    expect(ytdl).toHaveBeenCalledTimes(1);
   });
 
   it('SHOULD do nothing if stop time is greater than start time', () => {
@@ -145,6 +206,11 @@ describe('playAudioFromYouTube', () => {
         start: 10,
         url: 'url',
         stop: 5,
+      },
+      event: {
+        args: {
+          member: 'aaa',
+        },
       },
     };
     playAudioFromYouTube(props);
