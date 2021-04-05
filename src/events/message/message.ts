@@ -1,7 +1,6 @@
 import { actionManager } from '../../actions';
 import { Event } from '../../utils';
-import { IEventProps } from '..';
-import { ClientEvent } from '..';
+import { IEventProps, ClientEvent } from '..';
 
 export function message(props: IEventProps): void {
   const { bot, payloads, config, guild } = props;
@@ -14,11 +13,11 @@ export function message(props: IEventProps): void {
       const { message, ignoreCase } = args;
       if (ignoreCase) {
         if (msg.content.toLowerCase() === message.toLowerCase()) {
-          actionManager({ guild, actions, config });
+          actionManager({ guild, actions, config, event });
         }
       } else {
         if (msg.content === message) {
-          actionManager({ guild, actions, config });
+          actionManager({ guild, actions, config, event });
         }
       }
     });

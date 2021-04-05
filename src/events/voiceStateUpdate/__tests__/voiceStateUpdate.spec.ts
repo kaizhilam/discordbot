@@ -1,5 +1,5 @@
 import { voiceStateUpdate } from '..';
-import { voiceConnect, voiceDisconnect, mute } from '../..';
+import { voiceConnect, voiceDisconnect, mute, deafen } from '../..';
 import { difference } from '../../../utils';
 
 jest.mock('../..');
@@ -68,7 +68,7 @@ describe('voiceStateUpdate', () => {
   });
 
   it('SHOULD run unmute when event selfMute is false', () => {
-    // Change this when unmite functionality is up
+    // TODO: Change this when unmite functionality is up
     difference.mockReturnValue({
       selfMute: false,
     });
@@ -79,6 +79,33 @@ describe('voiceStateUpdate', () => {
     const mockOnSecondArg = mockOn.mock.calls[0][1];
     mockOnSecondArg(oldVoiceState, newVoiceState);
     expect(mute).toHaveBeenCalledTimes(0);
+  });
+
+  it('SHOULD run deafen when event selfDeaf true', () => {
+    difference.mockReturnValue({
+      selfDeaf: true,
+    });
+    const oldVoiceState = {};
+    const newVoiceState = {};
+    const payloads = [];
+    voiceStateUpdate({ bot, payloads });
+    const mockOnSecondArg = mockOn.mock.calls[0][1];
+    mockOnSecondArg(oldVoiceState, newVoiceState);
+    expect(deafen).toHaveBeenCalledTimes(1);
+  });
+
+  it('SHOULD run undeafen when event selfDeaf false', () => {
+    // TODO: Change this when undeafen functionality is up
+    difference.mockReturnValue({
+      selfDeaf: false,
+    });
+    const oldVoiceState = {};
+    const newVoiceState = {};
+    const payloads = [];
+    voiceStateUpdate({ bot, payloads });
+    const mockOnSecondArg = mockOn.mock.calls[0][1];
+    mockOnSecondArg(oldVoiceState, newVoiceState);
+    expect(deafen).toHaveBeenCalledTimes(0);
   });
 
   it('SHOULD run nothing when nothing exist', () => {

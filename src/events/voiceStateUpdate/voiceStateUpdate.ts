@@ -1,5 +1,5 @@
 import { difference } from '../../utils';
-import { ClientEvent, IEventProps, voiceConnect, voiceDisconnect, mute } from '..';
+import { ClientEvent, IEventProps, deafen, mute, voiceConnect, voiceDisconnect } from '..';
 import { VoiceState } from 'discord.js';
 
 export function voiceStateUpdate(props: IEventProps): void {
@@ -19,7 +19,13 @@ export function voiceStateUpdate(props: IEventProps): void {
             mute({ voiceState: newVoiceState, payloads, config, guild });
           }
           break;
+        case 'selfDeaf':
+          if (voiceStateEvent[eventsTriggered]) {
+            deafen({ voiceState: newVoiceState, payloads, config, guild });
+          }
+          break;
         default:
+          console.log('a');
           break;
       }
     }
