@@ -31,7 +31,7 @@ describe('voiceDisconnect', () => {
       },
     ] as IPayload[];
     voiceDisconnect({ payloads, voiceState, config, guild });
-    expect(actionManager).toHaveBeenCalledWith({ actions: [], config, guild });
+    expect(actionManager).toHaveBeenCalledWith({ actions: [], config, guild, event: payloads[0] });
   });
 
   it('SHOULD do nothing if member does not match', () => {

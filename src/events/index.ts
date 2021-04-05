@@ -1,3 +1,4 @@
+export * from './deafen';
 export * from './message';
 export * from './mute';
 export * from './voiceConnect';

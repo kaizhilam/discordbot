@@ -1,4 +1,5 @@
 export enum Event {
+  deafen = 'deafen',
   voiceConnect = 'voiceConnect',
   voiceDisconnect = 'voiceDisconnect',
   message = 'message',

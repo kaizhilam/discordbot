@@ -19,17 +19,52 @@
     ]
   },
   {
-    "name": "Plays loser music when Liam joins",
+    "name": "start john cena theme on voice connect",
     "event": "voiceConnect",
     "args": {
       "member": "scoreleyx#9511"
     },
     "actions": [
       {
-        "name": "play loser theme",
+        "name": "play john cena theme",
         "action": "playAudioFromYouTube",
         "args": {
-          "url": "https://www.youtube.com/watch?v=yHw_aasOef0"
+          "url": "https://www.youtube.com/watch?v=-LGHwFanLX4"
+        }
+      }
+    ]
+  },
+  {
+    "name": "start music theme when liam joins",
+    "event": "voiceConnect",
+    "args": {
+      "member": "Terrah#1405"
+    },
+    "actions": [
+      {
+        "name": "I need a hero",
+        "action": "playAudioFromYouTube",
+        "args": {
+          "channel": "pepega",
+          "start": 57,
+          "stop": 75,
+          "url": "https://www.youtube.com/watch?v=bWcASV2sey0"
+        }
+      }
+    ]
+  },
+  {
+    "name": "test",
+    "event": "message",
+    "args": {
+      "message": "begone thot"
+    },
+    "actions": [
+      {
+        "name": "kick example",
+        "action": "kickFromVoiceChannel",
+        "args": {
+          "member": "Jojo#4020"
         }
       }
     ]
