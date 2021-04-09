@@ -57,14 +57,19 @@
     "name": "test",
     "event": "message",
     "args": {
-      "message": "begone thot"
+      "message": "begone thot",
+      "channel": "schema",
+      "member": "scoreleyx#9511"
     },
     "actions": [
       {
-        "name": "kick example",
-        "action": "kickFromVoiceChannel",
+        "name": "play jojo theme",
+        "action": "playAudioFromYouTube",
         "args": {
-          "member": "Jojo#4020"
+          "channel": "pepega",
+          "start": 225,
+          "stop": 252,
+          "url": "https://www.youtube.com/watch?v=2MtOpB5LlUA"
         }
       }
     ]

@@ -10,15 +10,26 @@ export function message(props: IEventProps): void {
   bot.on(ClientEvent.message, (msg) => {
     events.forEach((event) => {
       const { args, actions } = event;
-      const { message, ignoreCase } = args;
+      const { message, ignoreCase, channel, member } = args;
+      let chosenChannel;
+      if (channel) {
+        chosenChannel = guild.channels.cache.find((c) => c.name === channel);
+      }
+      let flow = true;
+      if (chosenChannel) {
+        flow = flow && msg.channel === chosenChannel;
+      }
+      if (member) {
+        flow = flow && msg.author.tag === member;
+      }
       if (ignoreCase) {
-        if (msg.content.toLowerCase() === message.toLowerCase()) {
-          actionManager({ guild, actions, config, event });
-        }
-      } else {
-        if (msg.content === message) {
-          actionManager({ guild, actions, config, event });
-        }
+        flow = flow && msg.content.toLowerCase() === message.toLowerCase();
+      }
+      if (!ignoreCase) {
+        flow = flow && msg.content === message;
+      }
+      if (flow) {
+        actionManager({ guild, actions, config, event });
       }
     });
   });
