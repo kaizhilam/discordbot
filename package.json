@@ -1,0 +1,39 @@
+{
+  "name": "discordbot",
+  "description": "",
+  "scripts": {
+    "start": "concurrently \"npm run start -w server\" \"npm run start -w frontend\"",
+    "build": "npm run build --workspaces",
+    "clean": "rimraf node_modules packages/frontend/node_modules packages/frontend/build packages/server/node_modules packages/server/dist",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kaizhilam/discordbot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kaizhilam/discordbot/issues"
+  },
+  "homepage": "https://github.com/kaizhilam/discordbot#readme",
+  "workspaces": [
+    "packages\\server",
+    "packages\\frontend"
+  ],
+  "devDependencies": {
+    "@commitlint/cli": "^17.0.3",
+    "@commitlint/config-conventional": "^17.0.3",
+    "commitizen": "^4.2.4",
+    "concurrently": "^7.2.2",
+    "cz-conventional-changelog": "^3.3.0",
+    "husky": "^8.0.1",
+    "rimraf": "^3.0.2"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
